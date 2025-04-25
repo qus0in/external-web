@@ -38,11 +38,14 @@
         });
         async function api2() {
             alert("비공개 API 호출");
-            const url = "http://localhost:8080"
+            alert(localStorage.getItem("token"));
+            const url = "http://localhost:8080" // localhost와 127.0.0.1을 구분할 줄 알아야한다!
+            // localStorage -> 도메인을 기준으로 구분되기 때문에... 1) Storage 2) Redirect 경로
             const response = await fetch(`${url}/api/data/hello`, {
                 // method: "GET",
                 headers: {
                     "Content-Type": "application/json",   
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
                 }
             });
             const data = await response.json();

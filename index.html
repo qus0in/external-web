@@ -35,6 +35,18 @@
             e.preventDefault(); 
             await api1();
         });
+        document.addEventListener("DOMContentLoaded", async () => {
+            const params = new URLSearchParams(window.location.search);
+            const token = params.get("token");
+            if (token) {
+                alert("토큰 있네!");
+                alert(token);
+                alert("이건 내가 저장해줄께!");
+                localStorage.setItem("token", token);
+                const cleanUrl = window.location.href.split("?")[0];
+                window.location.replace(cleanUrl);
+            }
+        });
     </script>
 </body>
 </html>
